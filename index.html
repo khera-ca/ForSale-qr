@@ -1,34 +1,555 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For Sale QR Test</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Property Details | Sanjeev Khera</title>
+  <meta name="description" content="Scan for price, photos, property details, and private showing requests." />
   <style>
+    :root{
+      --navy:#1A2744;
+      --red:#CC0000;
+      --gold:#C9A84C;
+      --white:#ffffff;
+      --bg:#f7f8fb;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --border:#e5e7eb;
+      --shadow:0 10px 30px rgba(26,39,68,.10);
+      --radius:18px;
+      --radius-sm:12px;
+      --max:780px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
     body{
-      font-family: Arial, sans-serif;
-      background:#f7f7f7;
-      color:#1A2744;
-      padding:40px 20px;
+      font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    button,input{
+      font:inherit;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(255,255,255,.96);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+
+    .topbar-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:10px 14px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      justify-content:space-between;
+    }
+
+    .topbar-address{
+      font-size:14px;
+      font-weight:700;
+      color:var(--navy);
+      line-height:1.25;
+      flex:1;
+      min-width:0;
+    }
+
+    .topbar-btn{
+      background:var(--red);
+      color:#fff;
+      border:none;
+      padding:12px 14px;
+      border-radius:12px;
+      font-weight:700;
+      white-space:nowrap;
+      min-height:44px;
+    }
+
+    .page{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 14px 40px;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      margin-bottom:16px;
+    }
+
+    .hero-img{
+      width:100%;
+      height:250px;
+      object-fit:cover;
+      background:#dfe4ea;
+    }
+
+    .hero-body{
+      padding:18px;
+    }
+
+    .eyebrow{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--gold);
+      font-weight:700;
+      margin-bottom:8px;
+    }
+
+    h1{
+      font-size:28px;
+      line-height:1.1;
+      color:var(--navy);
+      margin-bottom:10px;
+    }
+
+    .headline{
+      font-size:16px;
+      color:var(--muted);
+      margin-bottom:14px;
+    }
+
+    .price{
+      font-size:28px;
+      color:var(--red);
+      font-weight:800;
+      margin-bottom:16px;
+    }
+
+    .specs{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+    }
+
+    .spec{
+      background:#f8fafc;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px;
+      font-size:15px;
+      font-weight:700;
+      color:var(--navy);
       text-align:center;
     }
-    .box{
-      max-width:700px;
-      margin:40px auto;
-      background:#fff;
-      padding:30px;
-      border-radius:16px;
-      box-shadow:0 8px 24px rgba(0,0,0,.08);
+
+    .section{
+      padding:18px;
     }
-    h1{margin-bottom:10px;}
-    p{font-size:18px;line-height:1.5;}
+
+    .section h2{
+      font-size:22px;
+      color:var(--navy);
+      margin-bottom:14px;
+    }
+
+    .bullets{
+      padding-left:18px;
+      margin-bottom:14px;
+    }
+
+    .bullets li{
+      margin-bottom:8px;
+    }
+
+    .desc{
+      color:var(--text);
+      font-size:15px;
+    }
+
+    .gallery-scroll{
+      display:flex;
+      gap:10px;
+      overflow-x:auto;
+      padding-bottom:4px;
+      scroll-snap-type:x proximity;
+    }
+
+    .gallery-scroll a{
+      flex:0 0 78%;
+      scroll-snap-align:start;
+    }
+
+    .gallery-scroll img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      border-radius:14px;
+      border:1px solid var(--border);
+    }
+
+    .cta-box{
+      display:grid;
+      gap:12px;
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-light{
+      display:block;
+      width:100%;
+      text-align:center;
+      padding:15px 16px;
+      border-radius:14px;
+      font-weight:700;
+      min-height:44px;
+    }
+
+    .btn-primary{
+      background:var(--red);
+      color:#fff;
+    }
+
+    .btn-secondary{
+      background:var(--navy);
+      color:#fff;
+      border:none;
+      cursor:pointer;
+    }
+
+    .btn-light{
+      background:#fff;
+      color:var(--navy);
+      border:1px solid var(--border);
+    }
+
+    .subtext{
+      font-size:13px;
+      color:var(--muted);
+      text-align:center;
+    }
+
+    form{
+      display:grid;
+      gap:12px;
+    }
+
+    label{
+      display:block;
+      font-size:13px;
+      font-weight:700;
+      color:var(--navy);
+      margin-bottom:6px;
+    }
+
+    input{
+      width:100%;
+      border:1px solid #cfd6df;
+      border-radius:12px;
+      padding:14px 14px;
+      background:#fff;
+      min-height:48px;
+    }
+
+    input:focus{
+      outline:2px solid rgba(201,168,76,.35);
+      border-color:var(--gold);
+    }
+
+    .consent{
+      font-size:12px;
+      color:var(--muted);
+      line-height:1.5;
+      background:#fafafa;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px;
+    }
+
+    .success{
+      display:none;
+      background:#ecfdf5;
+      border:1px solid #a7f3d0;
+      color:#065f46;
+      padding:14px;
+      border-radius:12px;
+      font-size:14px;
+      font-weight:600;
+    }
+
+    .agent{
+      display:grid;
+      grid-template-columns:92px 1fr;
+      gap:14px;
+      align-items:center;
+    }
+
+    .agent-photo{
+      width:92px;
+      height:92px;
+      border-radius:50%;
+      object-fit:cover;
+      border:3px solid #fff;
+      box-shadow:0 4px 14px rgba(0,0,0,.10);
+      background:#dde3ea;
+    }
+
+    .agent h3{
+      color:var(--navy);
+      font-size:22px;
+      margin-bottom:4px;
+    }
+
+    .agent-meta{
+      font-size:14px;
+      color:var(--muted);
+      margin-bottom:10px;
+    }
+
+    .agent-links{
+      display:grid;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .footer-note{
+      font-size:12px;
+      color:#6b7280;
+      line-height:1.55;
+      padding:0 4px 20px;
+    }
+
+    .small-link{
+      color:var(--navy);
+      text-decoration:underline;
+      word-break:break-word;
+    }
+
+    @media (min-width:700px){
+      .hero-img{height:360px}
+      .specs{grid-template-columns:repeat(4,1fr)}
+      .gallery-scroll a{flex:0 0 32%}
+      .agent-links{grid-template-columns:1fr 1fr}
+    }
   </style>
 </head>
 <body>
-  <div class="box">
-    <h1>ForSale QR page is working</h1>
-    <p>If you can see this, GitHub Pages is working correctly.</p>
-    <p>The problem is inside the previous landing page code, not the website hosting.</p>
+
+  <div class="topbar">
+    <div class="topbar-inner">
+      <!-- CHANGE PER LISTING -->
+      <div class="topbar-address" id="stickyAddress">21 Penguin Lane, Brampton, ON</div>
+      <a href="#showing" class="topbar-btn">Book Showing</a>
+    </div>
   </div>
+
+  <main class="page">
+
+    <section class="card">
+      <!-- CHANGE PER LISTING -->
+      <img class="hero-img" src="https://picsum.photos/1200/800?random=41" alt="Property photo" id="heroPhoto" />
+
+      <div class="hero-body">
+        <div class="eyebrow">Property Details</div>
+
+        <!-- CHANGE PER LISTING -->
+        <h1 id="propertyAddress">21 Penguin Lane, Brampton, ON</h1>
+
+        <!-- CHANGE PER LISTING -->
+        <p class="headline" id="propertyHeadline">Fully Renovated Semi-Detached — Brampton</p>
+
+        <!-- CHANGE PER LISTING -->
+        <div class="price" id="propertyPrice">$899,900</div>
+
+        <div class="specs">
+          <!-- CHANGE PER LISTING -->
+          <div class="spec" id="specBeds">🛏 3 Beds</div>
+          <!-- CHANGE PER LISTING -->
+          <div class="spec" id="specBaths">🚿 3 Baths</div>
+          <!-- CHANGE PER LISTING -->
+          <div class="spec" id="specSqft">📐 1,800 Sq Ft</div>
+          <!-- CHANGE PER LISTING -->
+          <div class="spec" id="specParking">🚗 2 Parking</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section">
+        <h2>Property Highlights</h2>
+        <ul class="bullets">
+          <!-- CHANGE PER LISTING -->
+          <li>3 spacious bedrooms and 3 washrooms.</li>
+          <!-- CHANGE PER LISTING -->
+          <li>Hardwood floors throughout main living areas.</li>
+          <!-- CHANGE PER LISTING -->
+          <li>Upgraded kitchen with modern finishes.</li>
+          <!-- CHANGE PER LISTING -->
+          <li>Finished basement for extra living space.</li>
+          <!-- CHANGE PER LISTING -->
+          <li>Move-in ready condition.</li>
+          <!-- CHANGE PER LISTING -->
+          <li>Excellent family-friendly neighbourhood.</li>
+        </ul>
+
+        <!-- CHANGE PER LISTING -->
+        <p class="desc">
+          This beautifully updated home offers comfortable family living with tasteful upgrades, strong curb appeal, and a practical layout.
+          It is ideal for buyers looking for a move-in ready property in a convenient Brampton location.
+        </p>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section">
+        <h2>Photo Gallery</h2>
+        <div class="gallery-scroll">
+          <!-- CHANGE PER LISTING -->
+          <a href="https://picsum.photos/1400/1000?random=51" target="_blank" rel="noopener noreferrer"><img src="https://picsum.photos/700/500?random=51" alt="Property gallery image 1"></a>
+          <!-- CHANGE PER LISTING -->
+          <a href="https://picsum.photos/1400/1000?random=52" target="_blank" rel="noopener noreferrer"><img src="https://picsum.photos/700/500?random=52" alt="Property gallery image 2"></a>
+          <!-- CHANGE PER LISTING -->
+          <a href="https://picsum.photos/1400/1000?random=53" target="_blank" rel="noopener noreferrer"><img src="https://picsum.photos/700/500?random=53" alt="Property gallery image 3"></a>
+          <!-- CHANGE PER LISTING -->
+          <a href="https://picsum.photos/1400/1000?random=54" target="_blank" rel="noopener noreferrer"><img src="https://picsum.photos/700/500?random=54" alt="Property gallery image 4"></a>
+          <!-- CHANGE PER LISTING -->
+          <a href="https://picsum.photos/1400/1000?random=55" target="_blank" rel="noopener noreferrer"><img src="https://picsum.photos/700/500?random=55" alt="Property gallery image 5"></a>
+          <!-- CHANGE PER LISTING -->
+          <a href="https://picsum.photos/1400/1000?random=56" target="_blank" rel="noopener noreferrer"><img src="https://picsum.photos/700/500?random=56" alt="Property gallery image 6"></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="showing">
+      <div class="section">
+        <h2>Book a Private Showing</h2>
+        <div class="cta-box">
+          <a class="btn-primary" href="https://calendly.com/khera-ca" target="_blank" rel="noopener noreferrer">Book a Private Showing</a>
+          <div class="subtext">Select a time that works for you — confirmed instantly.</div>
+
+          <!-- CHANGE PER LISTING -->
+          <a class="btn-light" href="https://www.realtor.ca/" target="_blank" rel="noopener noreferrer">View Full Listing</a>
+
+          <!-- CHANGE PER LISTING -->
+          <a class="btn-light" href="https://sanjeevkhera.com" target="_blank" rel="noopener noreferrer">View More Photos / Property Page</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section">
+        <h2>Get Updates on This Property and Similar Listings</h2>
+
+        <div class="success" id="successBox">Thanks — Sanjeev will be in touch shortly.</div>
+
+        <form id="leadForm">
+          <div>
+            <label for="firstName">First Name</label>
+            <input id="firstName" name="firstName" type="text" required />
+          </div>
+
+          <div>
+            <label for="phone">Phone Number</label>
+            <input id="phone" name="phone" type="tel" required />
+          </div>
+
+          <div>
+            <label for="email">Email Address</label>
+            <input id="email" name="email" type="email" required />
+          </div>
+
+          <input type="hidden" name="propertyAddress" value="21 Penguin Lane, Brampton, ON" id="hiddenPropertyAddress" />
+          <input type="hidden" name="source" value="For Sale QR" />
+          <input type="hidden" name="pageUrl" id="pageUrl" />
+
+          <div class="consent">
+            By submitting, you consent to being contacted by <strong>Sanjeev Khera, Sales Representative, RE/MAX Hallmark Realty Ltd., Brokerage</strong>, regarding this property and similar properties.
+            Your information will not be shared with third parties.
+            You can withdraw your consent at any time by contacting Sanjeev at 647-870-0565, khera.ca@gmail.com, or sanjeevkhera.com.
+            Mailing address: 3420 Major MacKenzie Dr W, Unit 103, Vaughan, ON L4H 4J6. This communication is not intended to solicit buyers or sellers currently under contract with another brokerage.
+          </div>
+
+          <button type="submit" class="btn-secondary">Send Me Details</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section">
+        <h2>Your Realtor</h2>
+
+        <div class="agent">
+          <img class="agent-photo" src="https://picsum.photos/300/300?random=61" alt="Sanjeev Khera headshot" />
+          <div>
+            <h3>Sanjeev Khera</h3>
+            <div class="agent-meta">
+              Sales Representative<br />
+              RE/MAX Hallmark Realty Ltd., Brokerage — Lino Arci Team<br />
+              647-870-0565<br />
+              <a class="small-link" href="mailto:khera.ca@gmail.com">khera.ca@gmail.com</a><br />
+              <a class="small-link" href="https://sanjeevkhera.com" target="_blank" rel="noopener noreferrer">sanjeevkhera.com</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="agent-links">
+          <a class="btn-primary" href="tel:6478700565">Call or Text</a>
+          <a class="btn-light" href="mailto:khera.ca@gmail.com">Email</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer-note">
+      Not intended to solicit buyers or sellers currently under a contractual agreement with another brokerage.
+      Sanjeev Khera, Sales Representative, RE/MAX Hallmark Realty Ltd., Brokerage — Lino Arci Team.
+      3420 Major MacKenzie Dr W, Unit 103, Vaughan, ON L4H 4J6.
+      Office: 905-778-0292.
+      Each office independently owned and operated.
+    </div>
+  </main>
+
+  <script>
+    const WEBHOOK_URL = "PASTE-YOUR-GOOGLE-APPS-SCRIPT-WEBHOOK-URL-HERE";
+
+    document.getElementById("pageUrl").value = window.location.href;
+
+    const leadForm = document.getElementById("leadForm");
+    const successBox = document.getElementById("successBox");
+
+    leadForm.addEventListener("submit", async function(e){
+      e.preventDefault();
+
+      const firstName = document.getElementById("firstName").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const propertyAddress = document.getElementById("hiddenPropertyAddress").value;
+
+      const formData = new FormData();
+      formData.append("firstName", firstName);
+      formData.append("phone", phone);
+      formData.append("email", email);
+      formData.append("propertyAddress", propertyAddress);
+      formData.append("source", "For Sale QR");
+      formData.append("pageUrl", window.location.href);
+
+      try {
+        await fetch(WEBHOOK_URL, {
+          method: "POST",
+          body: formData,
+          mode: "no-cors"
+        });
+
+        successBox.style.display = "block";
+        successBox.textContent = "Thanks " + firstName + " — Sanjeev will be in touch shortly.";
+        leadForm.reset();
+        window.scrollTo({ top: successBox.offsetTop - 90, behavior: "smooth" });
+      } catch (error) {
+        alert("There was a problem submitting the form. Please call or text Sanjeev at 647-870-0565.");
+      }
+    });
+  </script>
 </body>
 </html>
