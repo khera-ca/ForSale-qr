@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Property Details | Sanjeev Khera</title>
+  <meta name="description" content="Scan for price, photos, property details, and private showing requests." />
+  <style>
+    :root{
+      --navy:#1A2744;
+      --red:#CC0000;
+      --gold:#C9A84C;
+      --white:#ffffff;
+      --bg:#f7f8fb;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --border:#e5e7eb;
+      --shadow:0 10px 30px rgba(26,39,68,.10);
+      --radius:18px;
+      --radius-sm:12px;
+      --max:780px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    button,input{
+      font:inherit;
+    }
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(255,255,255,.96);
+      backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+
+    .topbar-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:10px 14px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      justify-content:space-between;
+    }
+
+    .topbar-address{
+      font-size:14px;
+      font-weight:700;
+      color:var(--navy);
+      line-height:1.25;
+      flex:1;
+      min-width:0;
+    }
+
+    .topbar-btn{
+      background:var(--red);
+      color:#fff;
+      border:none;
+      padding:12px 14px;
+      border-radius:12px;
+      font-weight:700;
+      white-space:nowrap;
+      min-height:44px;
+    }
+
+    .page{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 14px 40px;
+    }
+
+    .card{
+      background:#fff;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      margin-bottom:16px;
+    }
+
+    .hero-img{
+      width:100%;
+      height:250px;
+      object-fit:cover;
+      background:#dfe4ea;
+    }
+
+    .hero-body{
+      padding:18px;
+    }
+
+    .eyebrow{
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--gold);
+      font-weight:700;
+      margin-bottom:8px;
+    }
+
+    h1{
+      font-size:28px;
+      line-height:1.1;
+      color:var(--navy);
+      margin-bottom:10px;
+    }
+
+    .headline{
+      font-size:16px;
+      color:var(--muted);
+      margin-bottom:14px;
+    }
+
+    .price{
+      font-size:28px;
+      color:var(--red);
+      font-weight:800;
+      margin-bottom:16px;
+    }
+
+    .specs{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+    }
+
+    .spec{
+      background:#f8fafc;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px;
+      font-size:15px;
+      font-weight:700;
+      color:var(--navy);
+      text-align:center;
+    
