@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Property Details | Sanjeev Khera</title>
-  <meta name="description" content="Scan for price, photos, property details, and private showing requests." />
+  <title>46 Matthew Drive | Sanjeev Khera</title>
+  <meta name="description" content="Thank you for scanning. View price, photos, property details, private showings, and updates for this listing." />
   <style>
     :root{
       --navy:#1A2744;
@@ -15,10 +15,11 @@
       --text:#1f2937;
       --muted:#6b7280;
       --border:#e5e7eb;
+      --soft:#f8fafc;
       --shadow:0 10px 30px rgba(26,39,68,.10);
       --radius:18px;
       --radius-sm:12px;
-      --max:780px;
+      --max:820px;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
@@ -32,9 +33,7 @@
 
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
-    button,input{
-      font:inherit;
-    }
+    button,input{font:inherit}
 
     .topbar{
       position:sticky;
@@ -89,6 +88,66 @@
       margin-bottom:16px;
     }
 
+    .section{
+      padding:18px;
+    }
+
+    .thankyou-wrap{
+      padding:24px 18px 20px;
+      text-align:center;
+      background:linear-gradient(180deg,#ffffff 0%, #f7f8fb 100%);
+      border-bottom:1px solid var(--border);
+    }
+
+    .headshot{
+      width:104px;
+      height:104px;
+      margin:0 auto 14px;
+      border-radius:26px;
+      object-fit:cover;
+      object-position:center top;
+      border:3px solid #fff;
+      box-shadow:0 8px 24px rgba(0,0,0,.10);
+      background:#dde3ea;
+    }
+
+    .thankyou-badge{
+      display:inline-block;
+      font-size:12px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--gold);
+      font-weight:800;
+      margin-bottom:8px;
+    }
+
+    .thankyou-title{
+      font-size:28px;
+      line-height:1.1;
+      color:var(--navy);
+      margin-bottom:10px;
+    }
+
+    .thankyou-text{
+      font-size:15px;
+      color:var(--muted);
+      max-width:46ch;
+      margin:0 auto 14px;
+    }
+
+    .agent-mini{
+      font-size:14px;
+      color:var(--muted);
+      line-height:1.55;
+    }
+
+    .agent-mini strong{
+      display:block;
+      color:var(--navy);
+      font-size:18px;
+      margin-bottom:2px;
+    }
+
     .hero-img{
       width:100%;
       height:250px;
@@ -136,7 +195,7 @@
     }
 
     .spec{
-      background:#f8fafc;
+      background:var(--soft);
       border:1px solid var(--border);
       border-radius:14px;
       padding:12px;
@@ -144,10 +203,6 @@
       font-weight:700;
       color:var(--navy);
       text-align:center;
-    }
-
-    .section{
-      padding:18px;
     }
 
     .section h2{
@@ -189,6 +244,7 @@
       object-fit:cover;
       border-radius:14px;
       border:1px solid var(--border);
+      background:#eef2f7;
     }
 
     .cta-box{
@@ -232,6 +288,29 @@
       text-align:center;
     }
 
+    .updates-box{
+      display:grid;
+      gap:12px;
+    }
+
+    .form-note{
+      color:var(--muted);
+      font-size:14px;
+      margin-bottom:14px;
+    }
+
+    .success{
+      display:none;
+      background:#ecfdf5;
+      border:1px solid #a7f3d0;
+      color:#065f46;
+      padding:14px;
+      border-radius:12px;
+      font-size:14px;
+      font-weight:600;
+      margin-bottom:14px;
+    }
+
     form{
       display:grid;
       gap:12px;
@@ -269,17 +348,6 @@
       padding:12px;
     }
 
-    .success{
-      display:none;
-      background:#ecfdf5;
-      border:1px solid #a7f3d0;
-      color:#065f46;
-      padding:14px;
-      border-radius:12px;
-      font-size:14px;
-      font-weight:600;
-    }
-
     .agent{
       display:grid;
       grid-template-columns:92px 1fr;
@@ -292,6 +360,7 @@
       height:92px;
       border-radius:50%;
       object-fit:cover;
+      object-position:center top;
       border:3px solid #fff;
       box-shadow:0 4px 14px rgba(0,0,0,.10);
       background:#dde3ea;
@@ -315,6 +384,32 @@
       margin-top:14px;
     }
 
+    .small-link{
+      color:var(--navy);
+      text-decoration:underline;
+      word-break:break-word;
+    }
+
+    .logos{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:16px;
+      flex-wrap:wrap;
+      padding:18px;
+      border-top:1px solid var(--border);
+      background:#fffdfa;
+    }
+
+    .logos img{
+      height:54px;
+      width:auto;
+      object-fit:contain;
+      background:#fff;
+      border-radius:12px;
+      padding:6px;
+    }
+
     .footer-note{
       font-size:12px;
       color:#6b7280;
@@ -322,17 +417,14 @@
       padding:0 4px 20px;
     }
 
-    .small-link{
-      color:var(--navy);
-      text-decoration:underline;
-      word-break:break-word;
-    }
-
     @media (min-width:700px){
+      .thankyou-wrap{padding:30px 24px 24px}
+      .headshot{width:120px;height:120px}
       .hero-img{height:360px}
       .specs{grid-template-columns:repeat(4,1fr)}
       .gallery-scroll a{flex:0 0 32%}
       .agent-links{grid-template-columns:1fr 1fr}
+      .logos img{height:62px}
     }
   </style>
 </head>
@@ -340,8 +432,7 @@
 
   <div class="topbar">
     <div class="topbar-inner">
-      <!-- CHANGE PER LISTING -->
-      <div class="topbar-address" id="stickyAddress">21 Penguin Lane, Brampton, ON</div>
+      <div class="topbar-address" id="stickyAddress">46 Matthew Drive</div>
       <a href="#showing" class="topbar-btn">Book Showing</a>
     </div>
   </div>
@@ -349,30 +440,35 @@
   <main class="page">
 
     <section class="card">
-      <!-- CHANGE PER LISTING -->
-      <img class="hero-img" src="https://picsum.photos/1200/800?random=41" alt="Property photo" id="heroPhoto" />
+      <div class="thankyou-wrap">
+        <img class="headshot" src="./assets/SanjeevKheraHeadshotLinoArci.jpg" alt="Sanjeev Khera headshot" />
+        <div class="thankyou-badge">Thank You</div>
+        <div class="thankyou-title">Thank you for submitting your details.</div>
+        <p class="thankyou-text">
+          You now have access to this property page. Review the details below, book a private viewing, and request updates on this home and similar listings.
+        </p>
+        <div class="agent-mini">
+          <strong>Sanjeev Khera</strong>
+          Sales Representative<br />
+          RE/MAX Hallmark Realty Ltd., Brokerage — Lino Arci Team
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <img class="hero-img" src="./assets/46-matthew-1.jpg" alt="46 Matthew Drive hero photo" id="heroPhoto" />
 
       <div class="hero-body">
         <div class="eyebrow">Property Details</div>
-
-        <!-- CHANGE PER LISTING -->
-        <h1 id="propertyAddress">21 Penguin Lane, Brampton, ON</h1>
-
-        <!-- CHANGE PER LISTING -->
-        <p class="headline" id="propertyHeadline">Fully Renovated Semi-Detached — Brampton</p>
-
-        <!-- CHANGE PER LISTING -->
-        <div class="price" id="propertyPrice">$899,900</div>
+        <h1 id="propertyAddress">46 Matthew Drive</h1>
+        <p class="headline" id="propertyHeadline">Detached family home with practical layout and private viewing opportunities</p>
+        <div class="price" id="propertyPrice">$INSERT PRICE</div>
 
         <div class="specs">
-          <!-- CHANGE PER LISTING -->
-          <div class="spec" id="specBeds">🛏 3 Beds</div>
-          <!-- CHANGE PER LISTING -->
+          <div class="spec" id="specBeds">🛏 4 Beds</div>
           <div class="spec" id="specBaths">🚿 3 Baths</div>
-          <!-- CHANGE PER LISTING -->
-          <div class="spec" id="specSqft">📐 1,800 Sq Ft</div>
-          <!-- CHANGE PER LISTING -->
-          <div class="spec" id="specParking">🚗 2 Parking</div>
+          <div class="spec" id="specSqft">📐 Insert Sq Ft</div>
+          <div class="spec" id="specParking">🚗 4 Parking</div>
         </div>
       </div>
     </section>
@@ -381,24 +477,16 @@
       <div class="section">
         <h2>Property Highlights</h2>
         <ul class="bullets">
-          <!-- CHANGE PER LISTING -->
-          <li>3 spacious bedrooms and 3 washrooms.</li>
-          <!-- CHANGE PER LISTING -->
-          <li>Hardwood floors throughout main living areas.</li>
-          <!-- CHANGE PER LISTING -->
-          <li>Upgraded kitchen with modern finishes.</li>
-          <!-- CHANGE PER LISTING -->
-          <li>Finished basement for extra living space.</li>
-          <!-- CHANGE PER LISTING -->
-          <li>Move-in ready condition.</li>
-          <!-- CHANGE PER LISTING -->
-          <li>Excellent family-friendly neighbourhood.</li>
+          <li>Spacious layout with comfortable everyday living areas.</li>
+          <li>Ideal setup for families looking for function and flexibility.</li>
+          <li>Well-sized bedrooms and multiple washrooms.</li>
+          <li>Convenient parking and strong curb appeal.</li>
+          <li>Private viewing available by appointment.</li>
+          <li>Great option for buyers tracking similar homes in the area.</li>
         </ul>
 
-        <!-- CHANGE PER LISTING -->
         <p class="desc">
-          This beautifully updated home offers comfortable family living with tasteful upgrades, strong curb appeal, and a practical layout.
-          It is ideal for buyers looking for a move-in ready property in a convenient Brampton location.
+          This listing is presented as a clean mobile-first details page so buyers can quickly review the home, browse photos, book a showing, and request similar-property updates.
         </p>
       </div>
     </section>
@@ -407,34 +495,20 @@
       <div class="section">
         <h2>Photo Gallery</h2>
         <div class="gallery-scroll">
-          <!-- CHANGE PER LISTING -->
-          <a href="https://picsum.photos/1400/1000?random=51" target="_blank" rel="noopener noreferrer"><img src="https://picsum.photos/700/500?random=51" alt="Property gallery image 1"></a>
-          <!-- CHANGE PER LISTING -->
-          <a href="https://picsum.photos/1400/1000?random=52" target="_blank" rel="noopener noreferrer"><img src="https://picsum.photos/700/500?random=52" alt="Property gallery image 2"></a>
-          <!-- CHANGE PER LISTING -->
-          <a href="https://picsum.photos/1400/1000?random=53" target="_blank" rel="noopener noreferrer"><img src="https://picsum.photos/700/500?random=53" alt="Property gallery image 3"></a>
-          <!-- CHANGE PER LISTING -->
-          <a href="https://picsum.photos/1400/1000?random=54" target="_blank" rel="noopener noreferrer"><img src="https://picsum.photos/700/500?random=54" alt="Property gallery image 4"></a>
-          <!-- CHANGE PER LISTING -->
-          <a href="https://picsum.photos/1400/1000?random=55" target="_blank" rel="noopener noreferrer"><img src="https://picsum.photos/700/500?random=55" alt="Property gallery image 5"></a>
-          <!-- CHANGE PER LISTING -->
-          <a href="https://picsum.photos/1400/1000?random=56" target="_blank" rel="noopener noreferrer"><img src="https://picsum.photos/700/500?random=56" alt="Property gallery image 6"></a>
+          <a href="./assets/46-matthew-1.jpg" target="_blank" rel="noopener noreferrer"><img src="./assets/46-matthew-1.jpg" alt="46 Matthew Drive photo 1"></a>
+          <a href="./assets/46-matthew-2.jpg" target="_blank" rel="noopener noreferrer"><img src="./assets/46-matthew-2.jpg" alt="46 Matthew Drive photo 2"></a>
+          <a href="./assets/46-matthew-3.jpg" target="_blank" rel="noopener noreferrer"><img src="./assets/46-matthew-3.jpg" alt="46 Matthew Drive photo 3"></a>
+          <a href="./assets/46-matthew-4.jpg" target="_blank" rel="noopener noreferrer"><img src="./assets/46-matthew-4.jpg" alt="46 Matthew Drive photo 4"></a>
         </div>
       </div>
     </section>
 
     <section class="card" id="showing">
       <div class="section">
-        <h2>Book a Private Showing</h2>
+        <h2>Book a Private Viewing</h2>
         <div class="cta-box">
-          <a class="btn-primary" href="https://calendly.com/khera-ca" target="_blank" rel="noopener noreferrer">Book a Private Showing</a>
-          <div class="subtext">Select a time that works for you — confirmed instantly.</div>
-
-          <!-- CHANGE PER LISTING -->
-          <a class="btn-light" href="https://www.realtor.ca/" target="_blank" rel="noopener noreferrer">View Full Listing</a>
-
-          <!-- CHANGE PER LISTING -->
-          <a class="btn-light" href="https://sanjeevkhera.com" target="_blank" rel="noopener noreferrer">View More Photos / Property Page</a>
+          <a class="btn-primary" href="https://calendly.com/khera-ca/30min" target="_blank" rel="noopener noreferrer">Book a Private Viewing</a>
+          <div class="subtext">Choose a time instantly through Calendly.</div>
         </div>
       </div>
     </section>
@@ -442,6 +516,18 @@
     <section class="card">
       <div class="section">
         <h2>Get Updates on This Property and Similar Listings</h2>
+        <div class="updates-box">
+          <a class="btn-light" href="#updatesForm">Yes, send me the details on this and similar properties</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="updatesForm">
+      <div class="section">
+        <h2>Send Me Details</h2>
+        <p class="form-note">
+          Fill out the form below to get updates on this property and similar homes.
+        </p>
 
         <div class="success" id="successBox">Thanks — Sanjeev will be in touch shortly.</div>
 
@@ -461,15 +547,12 @@
             <input id="email" name="email" type="email" required />
           </div>
 
-          <input type="hidden" name="propertyAddress" value="21 Penguin Lane, Brampton, ON" id="hiddenPropertyAddress" />
+          <input type="hidden" name="propertyAddress" value="46 Matthew Drive" id="hiddenPropertyAddress" />
           <input type="hidden" name="source" value="For Sale QR" />
           <input type="hidden" name="pageUrl" id="pageUrl" />
 
           <div class="consent">
-            By submitting, you consent to being contacted by <strong>Sanjeev Khera, Sales Representative, RE/MAX Hallmark Realty Ltd., Brokerage</strong>, regarding this property and similar properties.
-            Your information will not be shared with third parties.
-            You can withdraw your consent at any time by contacting Sanjeev at 647-870-0565, khera.ca@gmail.com, or sanjeevkhera.com.
-            Mailing address: 3420 Major MacKenzie Dr W, Unit 103, Vaughan, ON L4H 4J6. This communication is not intended to solicit buyers or sellers currently under contract with another brokerage.
+            By submitting, you consent to being contacted by <strong>Sanjeev Khera, Sales Representative, RE/MAX Hallmark Realty Ltd., Brokerage</strong>, regarding this property and similar properties. Your information will not be shared with third parties. You can withdraw your consent at any time by contacting Sanjeev at 647-870-0565, khera.ca@gmail.com, or sanjeevkhera.com. Mailing address: 3420 Major MacKenzie Dr W, Unit 103, Vaughan, ON L4H 4J6. This communication is not intended to solicit buyers or sellers currently under contract with another brokerage.
           </div>
 
           <button type="submit" class="btn-secondary">Send Me Details</button>
@@ -482,7 +565,7 @@
         <h2>Your Realtor</h2>
 
         <div class="agent">
-          <img class="agent-photo" src="https://picsum.photos/300/300?random=61" alt="Sanjeev Khera headshot" />
+          <img class="agent-photo" src="./assets/SanjeevKheraHeadshotLinoArci.jpg" alt="Sanjeev Khera headshot" />
           <div>
             <h3>Sanjeev Khera</h3>
             <div class="agent-meta">
@@ -496,9 +579,23 @@
         </div>
 
         <div class="agent-links">
-          <a class="btn-primary" href="tel:6478700565">Call or Text</a>
+          <a class="btn-primary" href="tel:6478700565">Call / Text</a>
           <a class="btn-light" href="mailto:khera.ca@gmail.com">Email</a>
         </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section">
+        <h2>View Listing on Website</h2>
+        <div class="cta-box">
+          <a class="btn-light" href="https://sanjeevkhera.com/property-details?id=N13236462&type=1" target="_blank" rel="noopener noreferrer">View Listing on Website</a>
+        </div>
+      </div>
+
+      <div class="logos">
+        <img src="./assets/LinoArciLogo.jpg" alt="Lino Arci logo" />
+        <img src="./assets/RemaxHallmarkLogo.jpg" alt="RE/MAX Hallmark logo" />
       </div>
     </section>
 
@@ -512,7 +609,9 @@
   </main>
 
   <script>
-    const WEBHOOK_URL = "PASTE-YOUR-GOOGLE-APPS-SCRIPT-WEBHOOK-URL-HERE";
+    const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbx2LQY-C-o5opgz173B7mLPRIzv91lfkZMI9TJYXjUlAhk1Mz45IoqoA034C0C4M8zTXw/exec";
+    const PROPERTY_ADDRESS = "46 Matthew Drive";
+    const WEBSITE_LINK = "https://sanjeevkhera.com/property-details?id=N13236462&type=1";
 
     document.getElementById("pageUrl").value = window.location.href;
 
@@ -527,7 +626,7 @@
       const email = document.getElementById("email").value.trim();
       const propertyAddress = document.getElementById("hiddenPropertyAddress").value;
 
-      const formData = new FormData();
+      const formData = new URLSearchParams();
       formData.append("firstName", firstName);
       formData.append("phone", phone);
       formData.append("email", email);
@@ -538,8 +637,9 @@
       try {
         await fetch(WEBHOOK_URL, {
           method: "POST",
-          body: formData,
-          mode: "no-cors"
+          mode: "no-cors",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: formData.toString()
         });
 
         successBox.style.display = "block";
