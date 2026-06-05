@@ -33,7 +33,7 @@
 
     a{text-decoration:none;color:inherit}
     img{max-width:100%;display:block}
-    button,input{font:inherit}
+    button{font:inherit}
 
     .topbar{
       position:sticky;
@@ -253,7 +253,6 @@
     }
 
     .btn-primary,
-    .btn-secondary,
     .btn-light{
       display:block;
       width:100%;
@@ -262,18 +261,13 @@
       border-radius:14px;
       font-weight:700;
       min-height:44px;
+      cursor:pointer;
     }
 
     .btn-primary{
       background:var(--red);
       color:#fff;
-    }
-
-    .btn-secondary{
-      background:var(--navy);
-      color:#fff;
       border:none;
-      cursor:pointer;
     }
 
     .btn-light{
@@ -288,64 +282,25 @@
       text-align:center;
     }
 
-    .updates-box{
-      display:grid;
-      gap:12px;
-    }
-
-    .form-note{
-      color:var(--muted);
+    .interest-note,
+    .interest-success{
       font-size:14px;
-      margin-bottom:14px;
+      border-radius:12px;
+      padding:14px;
     }
 
-    .success{
+    .interest-note{
+      background:#f8fafc;
+      border:1px solid var(--border);
+      color:var(--muted);
+    }
+
+    .interest-success{
       display:none;
       background:#ecfdf5;
       border:1px solid #a7f3d0;
       color:#065f46;
-      padding:14px;
-      border-radius:12px;
-      font-size:14px;
       font-weight:600;
-      margin-bottom:14px;
-    }
-
-    form{
-      display:grid;
-      gap:12px;
-    }
-
-    label{
-      display:block;
-      font-size:13px;
-      font-weight:700;
-      color:var(--navy);
-      margin-bottom:6px;
-    }
-
-    input{
-      width:100%;
-      border:1px solid #cfd6df;
-      border-radius:12px;
-      padding:14px 14px;
-      background:#fff;
-      min-height:48px;
-    }
-
-    input:focus{
-      outline:2px solid rgba(201,168,76,.35);
-      border-color:var(--gold);
-    }
-
-    .consent{
-      font-size:12px;
-      color:var(--muted);
-      line-height:1.5;
-      background:#fafafa;
-      border:1px solid var(--border);
-      border-radius:12px;
-      padding:12px;
     }
 
     .agent{
@@ -402,12 +357,20 @@
     }
 
     .logos img{
-      height:54px;
+      max-width:100%;
       width:auto;
       object-fit:contain;
       background:#fff;
       border-radius:12px;
       padding:6px;
+    }
+
+    .logo-lino{
+      height:60px;
+    }
+
+    .logo-remax{
+      height:60px;
     }
 
     .footer-note{
@@ -424,7 +387,7 @@
       .specs{grid-template-columns:repeat(4,1fr)}
       .gallery-scroll a{flex:0 0 32%}
       .agent-links{grid-template-columns:1fr 1fr}
-      .logos img{height:62px}
+      .logo-lino,.logo-remax{height:66px}
     }
   </style>
 </head>
@@ -443,8 +406,8 @@
       <div class="thankyou-wrap">
         <img class="headshot" src="./assets/SanjeevKheraHeadshotLinoArci.jpg" alt="Sanjeev Khera headshot" />
         <div class="thankyou-badge">Thank You</div>
-        <div class="thankyou-title">Thank you for submitting your details.</div>
-        <p class="thankyou-text">
+        <div class="thankyou-title" id="thankyouTitle">Thank you for submitting your details.</div>
+        <p class="thankyou-text" id="thankyouText">
           You now have access to this property page. Review the details below, book a private viewing, and request updates on this home and similar listings.
         </p>
         <div class="agent-mini">
@@ -486,7 +449,7 @@
         </ul>
 
         <p class="desc">
-          This listing is presented as a clean mobile-first details page so buyers can quickly review the home, browse photos, book a showing, and request similar-property updates.
+          This page gives buyers a fast mobile-first way to review the home, browse photos, book a private showing, and request follow-up on this listing and similar properties.
         </p>
       </div>
     </section>
@@ -516,47 +479,15 @@
     <section class="card">
       <div class="section">
         <h2>Get Updates on This Property and Similar Listings</h2>
-        <div class="updates-box">
-          <a class="btn-light" href="#updatesForm">Yes, send me the details on this and similar properties</a>
+        <div class="interest-note" id="interestNote">
+          Tap the button below and I’ll mark that you want updates on this property and similar listings.
         </div>
-      </div>
-    </section>
-
-    <section class="card" id="updatesForm">
-      <div class="section">
-        <h2>Send Me Details</h2>
-        <p class="form-note">
-          Fill out the form below to get updates on this property and similar homes.
-        </p>
-
-        <div class="success" id="successBox">Thanks — Sanjeev will be in touch shortly.</div>
-
-        <form id="leadForm">
-          <div>
-            <label for="firstName">First Name</label>
-            <input id="firstName" name="firstName" type="text" required />
-          </div>
-
-          <div>
-            <label for="phone">Phone Number</label>
-            <input id="phone" name="phone" type="tel" required />
-          </div>
-
-          <div>
-            <label for="email">Email Address</label>
-            <input id="email" name="email" type="email" required />
-          </div>
-
-          <input type="hidden" name="propertyAddress" value="46 Matthew Drive" id="hiddenPropertyAddress" />
-          <input type="hidden" name="source" value="For Sale QR" />
-          <input type="hidden" name="pageUrl" id="pageUrl" />
-
-          <div class="consent">
-            By submitting, you consent to being contacted by <strong>Sanjeev Khera, Sales Representative, RE/MAX Hallmark Realty Ltd., Brokerage</strong>, regarding this property and similar properties. Your information will not be shared with third parties. You can withdraw your consent at any time by contacting Sanjeev at 647-870-0565, khera.ca@gmail.com, or sanjeevkhera.com. Mailing address: 3420 Major MacKenzie Dr W, Unit 103, Vaughan, ON L4H 4J6. This communication is not intended to solicit buyers or sellers currently under contract with another brokerage.
-          </div>
-
-          <button type="submit" class="btn-secondary">Send Me Details</button>
-        </form>
+        <div class="interest-success" id="interestSuccess">
+          Thanks — your request for updates on this property and similar listings has been recorded.
+        </div>
+        <div class="cta-box" style="margin-top:12px;">
+          <button class="btn-light" id="interestBtn" type="button">Yes, send me the details on this and similar properties</button>
+        </div>
       </div>
     </section>
 
@@ -594,8 +525,8 @@
       </div>
 
       <div class="logos">
-        <img src="./assets/LinoArciLogo.jpg" alt="Lino Arci logo" />
-        <img src="./assets/RemaxHallmarkLogo.jpg" alt="RE/MAX Hallmark logo" />
+        <img class="logo-lino" src="./assets/LINO%20REMAX%202025.png" alt="Lino Arci and RE/MAX logo" />
+        <img class="logo-remax" src="./assets/REMAX_Hallmark_LOGO_page-0001.jpg" alt="RE/MAX Hallmark logo" />
       </div>
     </section>
 
@@ -611,28 +542,47 @@
   <script>
     const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbx2LQY-C-o5opgz173B7mLPRIzv91lfkZMI9TJYXjUlAhk1Mz45IoqoA034C0C4M8zTXw/exec";
     const PROPERTY_ADDRESS = "46 Matthew Drive";
-    const WEBSITE_LINK = "https://sanjeevkhera.com/property-details?id=N13236462&type=1";
+    const LISTING_URL = "https://sanjeevkhera.com/property-details?id=N13236462&type=1";
 
-    document.getElementById("pageUrl").value = window.location.href;
+    const params = new URLSearchParams(window.location.search);
+    const lead = {
+      firstName: params.get("firstName") || "",
+      phone: params.get("phone") || "",
+      email: params.get("email") || "",
+      workingWithRealtor: params.get("workingWithRealtor") || "",
+      realtorName: params.get("realtorName") || "",
+      realtorPhone: params.get("realtorPhone") || ""
+    };
 
-    const leadForm = document.getElementById("leadForm");
-    const successBox = document.getElementById("successBox");
+    if (lead.firstName) {
+      document.getElementById("thankyouTitle").textContent = `Thank you, ${lead.firstName}.`;
+    }
 
-    leadForm.addEventListener("submit", async function(e){
-      e.preventDefault();
+    const interestBtn = document.getElementById("interestBtn");
+    const interestNote = document.getElementById("interestNote");
+    const interestSuccess = document.getElementById("interestSuccess");
 
-      const firstName = document.getElementById("firstName").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const propertyAddress = document.getElementById("hiddenPropertyAddress").value;
+    interestBtn.addEventListener("click", async function(){
+      if (!lead.firstName || !lead.phone || !lead.email) {
+        interestNote.textContent = "Lead details were not passed from page 1. Please start from the first QR page.";
+        return;
+      }
+
+      interestBtn.disabled = true;
+      interestBtn.textContent = "Saving...";
 
       const formData = new URLSearchParams();
-      formData.append("firstName", firstName);
-      formData.append("phone", phone);
-      formData.append("email", email);
-      formData.append("propertyAddress", propertyAddress);
-      formData.append("source", "For Sale QR");
+      formData.append("firstName", lead.firstName);
+      formData.append("phone", lead.phone);
+      formData.append("email", lead.email);
+      formData.append("workingWithRealtor", lead.workingWithRealtor);
+      formData.append("realtorName", lead.realtorName);
+      formData.append("realtorPhone", lead.realtorPhone);
+      formData.append("propertyAddress", PROPERTY_ADDRESS);
+      formData.append("source", "For Sale QR - Interest Update");
       formData.append("pageUrl", window.location.href);
+      formData.append("interestUpdate", "Y");
+      formData.append("listingUrl", LISTING_URL);
 
       try {
         await fetch(WEBHOOK_URL, {
@@ -642,12 +592,13 @@
           body: formData.toString()
         });
 
-        successBox.style.display = "block";
-        successBox.textContent = "Thanks " + firstName + " — Sanjeev will be in touch shortly.";
-        leadForm.reset();
-        window.scrollTo({ top: successBox.offsetTop - 90, behavior: "smooth" });
+        interestNote.style.display = "none";
+        interestSuccess.style.display = "block";
+        interestBtn.textContent = "Request Saved";
       } catch (error) {
-        alert("There was a problem submitting the form. Please call or text Sanjeev at 647-870-0565.");
+        interestBtn.disabled = false;
+        interestBtn.textContent = "Yes, send me the details on this and similar properties";
+        alert("There was a problem saving your request. Please call or text Sanjeev at 647-870-0565.");
       }
     });
   </script>
